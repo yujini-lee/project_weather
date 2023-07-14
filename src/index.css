@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  position: relative;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.weatherWrap{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: url(https://images.unsplash.com/photo-1564836663277-c4aa761b9882?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8cmFpbnx8fHx8fDE2ODkzMDA2NDM&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600) center no-repeat; background-size: cover;
+  color: #fff;
+}
+
+.section_left{
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5rem 0rem 5rem 5rem; 
+}
+.section_left h1{
+  font-size: 1.2rem;
+}
+.weather_text{
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+.temperature{
+  font-size:10rem;
+}
+.city_name{
+  margin-top: 1rem;
+  font-size: 5rem;
+  text-transform: capitalize;
+}
+.city_name .clock{
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  display: block;
+}
+.weather_state {
+  margin-top: .3rem;
+  font-size: 1.5rem;
+  
+}
+.icon_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon{
+  width: 100px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+
+.section_right {
+  height: 100%;
+  width: 25vw;
+  padding: 5rem 2rem;
+  color: #ced4da;
+  font-weight: 500;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(1.5rem);
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.search {
+  border-bottom: 1px solid #ced4da;
+}
+
+.search_input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 0.5rem;
+  width: 65%;
+  outline: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.search_input::placeholder {
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+}
+
+.search_btn {
+  border: none;
+  background: #b197fc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7rem;
+  height: 7rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.icon_search {
+  display: block;
+  font-size: 1.5rem;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.search-btn:hover>.icon-search,
+.search-btn:focus>.icon-search {
+  transform: scale(1.1);
+}
+
+.history {
+  padding: 1.5rem 0rem;
+}
+
+.history> :nth-child(n) {
+  padding: 1.5rem 0rem;
+}
+
+.history>li {
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+.history>li:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.remove_history {
+  opacity: 0;
+  color: #ced4da;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.history>li:hover .remove_history {
+  opacity: 1;
+}
+
+.remove_history:hover {
+  color: #fff;
+}
+
+.weather_detail {
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 1.5rem;
+}
+
+.weather_detail h2 ,
+.weather_week h2{
+  padding: 3rem 0rem;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.detail_state {
+  display: flex;
+  flex-direction: column;
+}
+
+.item,
+.day {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0rem;
+}
+
+.item :last-child {
+  color: #fff;
+}
+
+.item:first-child,
+.day:first-child {
+  padding-top: 0rem;
+}
+
+.weather_week {
+  padding-bottom: 2rem;
+}
+
+.daily_weather {
+  color: #fff
+}
+
+.copyright {
+  text-align: right;
+  padding: 0.2rem;
+}
+
+.link {
+  color: #ced4da;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.link:visited {
+  color: #ced4da;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 414px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: no-repeat center/cover url(https://source.unsplash.com/500x1000/?weather);
+    overflow: scroll;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .section_left {
+    width: 100%;
+    height: 65vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  h1 {
+    width: 100%;
+    text-align: right;
+  }
+
+  .weather_today {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .temperature {
+    font-size: 4rem;
+  }
+
+  .city_name {
+    font-size: 3rem;
+  }
+
+  .clock {
+    display: none;
+  }
+
+  .search_btn {
+    width: 4rem;
+    height: 4rem;
+  }
+}
