@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Section_right from './components/Section_right';
+import SectionRight from './components/SectionRight';
 import './weather';
 export default function Main() {
-  const [temp, setTemp] = useState('');
-  const [humidity, sethumidity] = useState('');
-  const [cloudy, setcloudy] = useState('');
-  const [wind, setWind] = useState('');
-  const [icon, setIcon] = useState('');
-  const [cityName, setCityName] = useState('seoul');
-  const [weatherState, setWeatherState] = useState('');
+  const [weatherData, setWeatherData] = useState({
+    temp: '',
+    humidity: '',
+    cloudy: '',
+    wind: '',
+    icon: '',
+    cityName: 'seoul',
+    weatherState: '',
+  });
+
+
   const API_KEY = '34f5bab903dd6038a7f95d595922df32';
   const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
@@ -16,18 +20,22 @@ export default function Main() {
 
   // 현재 날씨
   useEffect(() => {
-    fetch(`${BASE_URL}?q=${cityName}&appid=${API_KEY}`)
+    fetch(`${BASE_URL}?q=${weatherData.cityName}&appid=${API_KEY}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setTemp(data.main.temp);
-        setWind(data.wind.speed);
-        setcloudy(data.clouds.all);
-        sethumidity(data.main.humidity);
-        setWeatherState(data.weather[0].main);
-        setIcon(data.weather[0].icon);
+        const { wind, clouds, main, weather } = data;
+       setWeatherData({
+          temp: main.temp,
+          wind: wind.speed, 
+          cloudy: clouds.all,
+          humidity: main.humidity,  
+          weatherState: weather[0].main,
+          icon: weather[0].icon,
+          cityName: weatherData.cityName,
+       })
       });
-  }, [cityName]);
+  }, [weatherData.cityName]);
 
   const bulidDate = () => {
     const time = new Date();
@@ -39,10 +47,10 @@ export default function Main() {
     return { time, hours, mins, day, date };
   };
 
-  let getDate = bulidDate();
+  const { hours, mins, day, date } = bulidDate();
 
   const changeCity = (name) =>{
-    setCityName(name);
+    setWeatherData({ ...weatherData, cityName: name });
   }
 
   return (
@@ -50,23 +58,23 @@ export default function Main() {
       <div className="section_left">
         <h1>the.weather</h1>
         <div className="weather_text">
-          <p className="temperature">{Math.round(temp - 273.15)}℃</p>
+          <p className="temperature">{Math.round(weatherData.temp - 273.15)}℃</p>
           <p className="city_name">
-            {cityName}
+            {weatherData.cityName}
             <span className="clock">
-              {getDate.hours}:{getDate.mins < 10 ? '0' : ''}
-              {getDate.mins} {getDate.day} {getDate.date} {getDate.moon}
+              {hours}:{mins < 10 ? '0' : ''}
+              {mins} {day} {date}
             </span>
           </p>
           <div className="icon_box">
             <i className="icon">
-              <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
+              <img src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="Weather Icon" />
             </i>
-            <span className="weather_state">{weatherState}</span>
+            <span className="weather_state">{weatherData.weatherState}</span>
           </div>
         </div>
       </div>
-      <Section_right humidity={humidity} wind={wind} cloudy={cloudy} changeCity={changeCity}/>
+      <SectionRight humidity={weatherData.humidity} wind={weatherData.wind} cloudy={weatherData.cloudy} changeCity={changeCity} />
     </div>
   );
 }
