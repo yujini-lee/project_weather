@@ -25,9 +25,9 @@ export default function SectionRight({ humidity, wind, cloudy, changeCity }) {
             onChange={handleChange}
             value={input}
           />
-          <button type="submit" className="search_btn">
+          {/* <button type="submit" className="search_btn">
             <i className="fas fa-search icon-search"></i>
-          </button>
+          </button> */}
         </form>
         <ul className="history">
           <li id="0">
